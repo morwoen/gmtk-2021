@@ -15996,14 +15996,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cinemachine3rdPersonCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 4847677611272781423, guid: 3ce0bc7510bb7d843a7af3c938ab628d, type: 3}
-      propertyPath: m_XAxis.m_InputAxisName
-      value: Mouse X
-      objectReference: {fileID: 0}
-    - target: {fileID: 4847677611272781423, guid: 3ce0bc7510bb7d843a7af3c938ab628d, type: 3}
-      propertyPath: m_YAxis.m_InputAxisName
-      value: Mouse Y
-      objectReference: {fileID: 0}
     - target: {fileID: 4847677611368059476, guid: 3ce0bc7510bb7d843a7af3c938ab628d, type: 3}
       propertyPath: m_FollowOffset.y
       value: 3.562633

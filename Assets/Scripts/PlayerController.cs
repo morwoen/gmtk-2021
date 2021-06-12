@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         target.y = yTarget * gravity * Time.deltaTime;
 
         controller.Move(target);
-        if (currentCharacter.transform.position.y < -30) // Teleport to origin if fall
+        if (iceCharacter.transform.position.y < -30 || fireCharacter.transform.position.y < -30) // Teleport to origin if fall
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -153,10 +153,10 @@ public class PlayerController : MonoBehaviour
 
     private void Swap()
     {
-        CancelRegen();
+        //CancelRegen();
 
         currentCharacter.GetComponent<CharacterController>().enabled = false;
-        currentCharacter.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //currentCharacter.GetComponent<Rigidbody>().velocity = Vector3.zero;
         if (selected == Characters.Fire)
         {
             selected = Characters.Ice;

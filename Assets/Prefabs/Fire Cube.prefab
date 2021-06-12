@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c60303efc766d40ab8bc9182542976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 45903850250361240b5acc34e8e4f573, type: 3}
   health: 0
 --- !u!54 &3571617697188750515
 Rigidbody:

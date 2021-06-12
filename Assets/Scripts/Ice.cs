@@ -9,6 +9,8 @@ public class Ice : MonoBehaviour
 
     private PlayerController player;
 
+    AudioSource audioSource;
+
     //bool regen;
 
     const float ICE_RATE = 1.56f; // The magic number
@@ -16,6 +18,7 @@ public class Ice : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -41,6 +44,7 @@ public class Ice : MonoBehaviour
         {
             if (!isOnIce && player.GetHealth() > 0.01f)
             {
+                if (!audioSource.isPlaying) audioSource.Play();
 				//regen = false;
 				player.Hurt(0.005f);
 				CancelInvoke();
@@ -51,7 +55,9 @@ public class Ice : MonoBehaviour
                 Destroy(g, Random.Range(5, 7));
             }
 
-        }
+        } else {
+            audioSource.Stop();
+		}
         //if (regen) {
         //    bool air = !Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Ice"));
 

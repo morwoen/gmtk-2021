@@ -41,10 +41,10 @@ public class Ice : MonoBehaviour
             g.transform.localScale = randomScale;
             Destroy(g, Random.Range(5, 7));
         } else if (regen) {
-            slider.value += 0.005f;
+            slider.value += 0.01f;
             slider.value = Mathf.Clamp(slider.value, 0, 1);
         } else if (!air && !IsInvoking()) {
-            Invoke("StartRegen", 2);
+            Invoke("StartRegen", 0.5f);
         }
     }
 

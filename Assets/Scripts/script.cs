@@ -24,7 +24,6 @@ public class script : MonoBehaviour
          targetHealth th = hitinfo.GetComponent<targetHealth>();  
         if(th != null) 
         {
-            Debug.Log("wehitSomething"); 
             Destroy(gameObject);
             th.TakeDamage(damage);
             Instantiate(flame, transform.position, transform.rotation); 

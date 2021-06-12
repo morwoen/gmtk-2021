@@ -17,7 +17,15 @@ public class firebullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Fire1"))
+        if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Ice"))) {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+
+        if (!GetComponent<CharacterController>().enabled) {
+            return;
+        }
+
+        if (Input.GetButton("Fire1"))
         {
             if (Time.time - lastFired > 1 / fireRate)  
             {

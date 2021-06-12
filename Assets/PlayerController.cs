@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    //DEBUG
+    // UI
     public Canvas UI;
+    GameObject thermometer;
+
+    //DEBUG
     private GameObject debugNote;
 
     //player characters
@@ -21,6 +24,10 @@ public class PlayerController : MonoBehaviour
     RaycastHit standingObject;
     bool doesRaycastHit;
 
+    //health
+    int health;
+    int othersHealth;
+    
     //camera
     public Camera mainCamera;
 
@@ -31,6 +38,9 @@ public class PlayerController : MonoBehaviour
     //static vectors
     static Vector3 OFFSET = new Vector3(0, 1.5f, 0);
     static Vector3 ORIGIN = new Vector3(0, 10, 0);
+
+    //const variables
+    const int HP_MAX = 3;
 
     //movement variables
     Vector3 stickPosition;
@@ -46,6 +56,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = HP_MAX;
+        othersHealth = HP_MAX;
         selected = Characters.Fire;
         fireCharacter = transform.GetChild(0).gameObject;
         iceCharacter = transform.GetChild(1).gameObject;
@@ -53,11 +65,14 @@ public class PlayerController : MonoBehaviour
         controller = currentCharacter.GetComponent<CharacterController>();
         gravity = 1.7f;
         debugNote = UI.transform.Find("DebugText").gameObject;
+        thermometer = UI.transform.Find("HealthSlider").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+            Hurt();
         doesRaycastHit = false; //DEBUG
         if (Input.GetButtonDown("Fire1"))
         {
@@ -131,6 +146,10 @@ public class PlayerController : MonoBehaviour
             selected = Characters.Fire;
             currentCharacter = fireCharacter;
         }
+        int temp = othersHealth;
+        othersHealth = health;
+        health = temp;
+        UpdateHealth();
         controller = currentCharacter.GetComponent<CharacterController>();
         currentCharacter.GetComponent<CharacterController>().enabled = true;
     }
@@ -147,5 +166,30 @@ public class PlayerController : MonoBehaviour
         mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, cameraTarget, Time.deltaTime * 7);
 
         mainCamera.transform.rotation = Quaternion.Lerp(mainCamera.transform.rotation, Quaternion.LookRotation(currentCharacter.transform.position - mainCamera.transform.position), Time.deltaTime * 7);
+    }
+
+    void Hurt()
+    {
+        health--;
+        UpdateHealth();
+        if(health == 0)
+        {
+            CommitDie();
+        }
+    }
+
+    void UpdateHealth()
+    {
+        float healthlevel = (float)health / (float)HP_MAX;
+        Image tempGauge = thermometer.transform.GetChild(1).GetComponentInChildren<Image>();
+        if (selected == Characters.Ice)
+            healthlevel = 1 - healthlevel;
+        tempGauge.fillAmount = healthlevel;
+        Debug.Log(health + " " + healthlevel + " " + selected);
+    }
+
+    private void CommitDie()
+    {
+        throw new NotImplementedException();
     }
 }

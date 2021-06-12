@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
   private GameObject HUD;
   private GameObject panel;
+  private Image fadeToBlack;
 
-  private bool isOpen = false;
+  public bool isOpen {
+    get;
+    private set;
+  } = false;
   private bool levelSelect = false;
 
   private void Start() {
-    #if UNITY_WEBGL
+#if UNITY_WEBGL
     // Remove the Quit button in WebGL
-    panel.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-    #endif
+    transform.GetChild(1).GetChild(1).GetChild(0).gameObject.SetActive(false);
+#endif
   }
 
   void Awake() {
-    panel = transform.GetChild(0).gameObject;
+    fadeToBlack = transform.GetChild(0).GetComponent<Image>();
+    panel = transform.GetChild(1).gameObject;
     isOpen = panel.activeSelf;
     var thisCanvas = GetComponent<Canvas>();
     foreach (var c in FindObjectsOfType<Canvas>()) {
@@ -47,6 +53,7 @@ public class Menu : MonoBehaviour
     panel.SetActive(isOpen);
     HUD.SetActive(!isOpen);
     Time.timeScale = isOpen ? 0 : 1;
+    fadeToBlack.color = new Color(0, 0, 0, isOpen ? fadeToBlack.color.a : 0);
   }
 
   public void Play() {

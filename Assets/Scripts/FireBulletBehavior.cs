@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBullet : MonoBehaviour
+public class FireBulletBehavior : MonoBehaviour
 {
   public Rigidbody rb;
   public float speed;

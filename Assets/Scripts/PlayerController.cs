@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,8 +26,7 @@ public class PlayerController : MonoBehaviour
     bool doesRaycastHit;
 
     //health
-    int health;
-    int othersHealth;
+    float health;
     
     //camera
     public Camera mainCamera;
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     static Vector3 ORIGIN = new Vector3(0, 10, 0);
 
     //const variables
-    const int HP_MAX = 3;
 
     //movement variables
     Vector3 stickPosition;
@@ -56,8 +55,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = HP_MAX;
-        othersHealth = HP_MAX;
+        health = 0.5f;
         selected = Characters.Fire;
         fireCharacter = transform.GetChild(0).gameObject;
         iceCharacter = transform.GetChild(1).gameObject;
@@ -72,7 +70,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
-            Hurt();
+            Hurt(.1f);
         doesRaycastHit = false; //DEBUG
         if (Input.GetButtonDown("Swap"))
         {
@@ -146,10 +144,6 @@ public class PlayerController : MonoBehaviour
             selected = Characters.Fire;
             currentCharacter = fireCharacter;
         }
-        int temp = othersHealth;
-        othersHealth = health;
-        health = temp;
-        UpdateHealth();
         controller = currentCharacter.GetComponent<CharacterController>();
         currentCharacter.GetComponent<CharacterController>().enabled = true;
     }
@@ -168,28 +162,29 @@ public class PlayerController : MonoBehaviour
         mainCamera.transform.rotation = Quaternion.Lerp(mainCamera.transform.rotation, Quaternion.LookRotation(currentCharacter.transform.position - mainCamera.transform.position), Time.deltaTime * 7);
     }
 
-    void Hurt()
+    public void Hurt(float amount)
     {
-        health--;
-        UpdateHealth();
-        if(health == 0)
+        if(health <= 0 || health >= 1)
         {
             CommitDie();
         }
+        else if (selected == Characters.Fire)
+            health -= amount;
+        else
+            health += amount;
+        UpdateHealth();
     }
 
     void UpdateHealth()
     {
-        float healthlevel = (float)health / (float)HP_MAX;
-        Image tempGauge = thermometer.transform.GetChild(1).GetComponentInChildren<Image>();
-        if (selected == Characters.Ice)
-            healthlevel = 1 - healthlevel;
-        tempGauge.fillAmount = healthlevel;
-        Debug.Log(health + " " + healthlevel + " " + selected);
+        Slider tempGauge = thermometer.GetComponent<Slider>();
+        tempGauge.value = health;
+        Debug.Log(health + " " + selected);
     }
 
-    private void CommitDie()
+    public void CommitDie()
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene(0);
+        
     }
 }

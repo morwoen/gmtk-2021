@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class targetHealth : MonoBehaviour
 {
+    public GameObject explosion;
     public AudioClip clip;
     public int health;
 
@@ -11,6 +12,7 @@ public class targetHealth : MonoBehaviour
         health -= damage;
         if (health <= 0) {
             AudioSource.PlayClipAtPoint(clip, transform.position);
+            Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

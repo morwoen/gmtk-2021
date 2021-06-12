@@ -17,10 +17,6 @@ public class PlayerController : MonoBehaviour
     Characters selected;
     GameObject currentCharacter;
 
-    //collision
-    RaycastHit standingObject;
-    bool doesRaycastHit;
-
     //camera
     public Camera mainCamera;
 
@@ -58,8 +54,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        doesRaycastHit = false; //DEBUG
-        if (Input.GetButtonDown("Fire1"))
+
+        if (Input.GetButtonDown("Fire2"))
         {
             Swap();
             yTarget = 0;
@@ -68,30 +64,23 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        // Sets control info for camera direction and player facing direction
         Vector3 cameraVector = mainCamera.transform.forward;
         cameraVector.y = 0.0f;
         stickPosition = Quaternion.FromToRotation(Vector3.forward, cameraVector) * direction;
         if (stickPosition != Vector3.zero) look.SetLookRotation(stickPosition);
         float speed = Mathf.Clamp(stickPosition.magnitude, 0, 1);
 
-
         if (yTarget > -50 && !controller.isGrounded)
         {
-            yTarget -= 1 * 9.8f * Time.deltaTime; // falling speed
+            yTarget -= 1 * 9.8f * Time.deltaTime;
         }
         if (controller.isGrounded)
-        {
-            yTarget = -0.5f; // sets the desired y position slightly below the ground to make sure the player stays grounded
-            doesRaycastHit = Physics.Raycast(currentCharacter.transform.position + Vector3.up, Vector3.down, out standingObject, 1000, ~LayerMask.GetMask("Player")); // maybe this should have an else for standingObject
-            if (doesRaycastHit && standingObject.collider.material.bounciness > 0.1f)
-                yTarget = standingObject.collider.material.bounciness * 10f;
-        }
+            yTarget = -0.5f;
 
         //jumping code
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
-            yTarget = 10;
+            yTarget = 5;
         }
 
         //Movement code
@@ -99,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             //target = speed*8*Time.deltaTime*stickPosition;
             target = speed * 8 * Time.deltaTime * currentCharacter.transform.forward;
-            currentCharacter.transform.rotation = Quaternion.Lerp(currentCharacter.transform.rotation, look, Time.deltaTime * 15); // face correctly
+            currentCharacter.transform.rotation = Quaternion.Lerp(currentCharacter.transform.rotation, look, Time.deltaTime * 15);
         }
         else
         {
@@ -107,14 +96,14 @@ public class PlayerController : MonoBehaviour
         }
 
         //animate.SetFloat("Speed", speed);
-        target.y = yTarget * gravity * Time.deltaTime;
+        target.y = yTarget * gravity *Time.deltaTime;
 
         controller.Move(target);
-        if (currentCharacter.transform.position.y < -20) // Teleport to origin if fall
+        if (currentCharacter.transform.position.y < -30)
         {
-            currentCharacter.transform.position = ORIGIN;
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
-        debugNote.GetComponent<Text>().text = "yTarget: " + yTarget+"\nisGrounded: " + controller.isGrounded + "\nCurrently Touching: " + standingObject.collider + "\nIs on top of something: " + doesRaycastHit;
+        debugNote.GetComponent<Text>().text = "yTarget: " + yTarget+"\n"+"isGrounded: " + controller.isGrounded;
     }
 
     private void Swap()

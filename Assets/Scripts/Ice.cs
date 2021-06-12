@@ -17,16 +17,20 @@ public class Ice : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate () {
+        if( Physics.CheckSphere(transform.position, 0.5f, LayerMask.GetMask("Fire"))) {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+		}
+
         if (!GetComponent<CharacterController>().enabled) {
             slider.gameObject.SetActive(false);
-            return; 
+            return;
         }
 
         slider.gameObject.SetActive(true);
 
-        bool air = !Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default")) && slider.value > 0;
+        bool air = !Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Ice")) && slider.value > 0;
 
-        if (air && slider.value > Mathf.Epsilon) {
+        if (air && slider.value > 0.01f) {
             regen = false;
             slider.value -= 0.005f;
             slider.value = Mathf.Clamp(slider.value, 0, 1);

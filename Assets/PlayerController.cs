@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire2"))
         {
             Swap();
             yTarget = 0;

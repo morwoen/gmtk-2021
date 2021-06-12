@@ -107,10 +107,10 @@ public class PlayerController : MonoBehaviour
         }
 
         //animate.SetFloat("Speed", speed);
-        target.y = yTarget * gravity *Time.deltaTime;
+        target.y = yTarget * gravity * Time.deltaTime;
 
         controller.Move(target);
-        if (currentCharacter.transform.position.y < -20)
+        if (currentCharacter.transform.position.y < -20) // Teleport to origin if fall
         {
             currentCharacter.transform.position = ORIGIN;
         }

@@ -2,30 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class targetHealth : MonoBehaviour
+public class TargetHealth : MonoBehaviour
 {
-    public int health;
-  
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  public int health;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    } 
-  public void TakeDamage(int damage)
-    {
-        health -= damage;  
-        if(health <= 0)
-        {   
-            Destroy(gameObject);
-           
-        }
-    
+  public void TakeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+      Destroy(gameObject);
     }
-
+  }
 }

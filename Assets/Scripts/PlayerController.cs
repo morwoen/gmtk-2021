@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
             Hurt();
         doesRaycastHit = false; //DEBUG
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Swap"))
         {
             Swap();
             yTarget = 0;

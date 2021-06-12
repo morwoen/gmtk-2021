@@ -2,37 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class firebullet : MonoBehaviour
+public class FireBullet : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    public float fireRate = 10;
-    public float lastFired;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+  public Rigidbody rb;
+  public float speed;
+  public int damage;
+  public ParticleSystem flame;
+
+  // Start is called before the first frame update
+  void Start() {
+    Destroy(gameObject, 5);
+  }
+
+  // Update is called once per frame
+  void Update() {
+    rb.velocity = transform.forward * speed * Time.deltaTime;
+  }
+
+  void OnTriggerEnter(Collider hitinfo) {
+    TargetHealth th = hitinfo.GetComponent<TargetHealth>();
+    if (th != null) {
+      Destroy(gameObject);
+      th.TakeDamage(damage);
+      Instantiate(flame, transform.position, transform.rotation);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Ice"))) {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        }
-
-        if (!GetComponent<CharacterController>().enabled) {
-            return;
-        }
-
-        if (Input.GetButton("Fire1"))
-        {
-            if (Time.time - lastFired > 1 / fireRate)  
-            {
-                lastFired = Time.time;
-
-                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            }
-        }
-    }
+  }
 }

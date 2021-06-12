@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     //health
     float health;
-    public bool regen;
+    bool regen;
     
     //camera
     public Camera mainCamera;
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stickPosition = Vector3.zero;
         health = 1;
         selected = Characters.Fire;
         fireCharacter = transform.GetChild(0).gameObject;
@@ -125,9 +126,9 @@ public class PlayerController : MonoBehaviour
         target.y = yTarget * gravity * Time.deltaTime;
 
         controller.Move(target);
-        if (currentCharacter.transform.position.y < -30) // Teleport to origin if fall
+        if (iceCharacter.transform.position.y < -30 || fireCharacter.transform.position.y < -30) // Teleport to origin if fall
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         debugNote.GetComponent<Text>().text = "yTarget: " + yTarget+"\nisGrounded: " + controller.isGrounded + "\nCurrently Touching: " + standingObject.collider + "\nIs on top of something: " + doesRaycastHit;
     }
@@ -155,10 +156,10 @@ public class PlayerController : MonoBehaviour
 
     private void Swap()
     {
-        CancelRegen();
+        //CancelRegen();
 
         currentCharacter.GetComponent<CharacterController>().enabled = false;
-        currentCharacter.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //currentCharacter.GetComponent<Rigidbody>().velocity = Vector3.zero;
         if (selected == Characters.Fire)
         {
             selected = Characters.Ice;
@@ -209,6 +210,6 @@ public class PlayerController : MonoBehaviour
 
     public void CommitDie()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

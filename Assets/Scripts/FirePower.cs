@@ -8,9 +8,11 @@ public class FirePower : MonoBehaviour
     public ParticleSystem fireEffect;
 
     private PlayerController player;
+    private AudioSource audioSource;
 
     private void Awake () {
         player = FindObjectOfType<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate () {
@@ -32,9 +34,11 @@ public class FirePower : MonoBehaviour
             player.CancelRegen();
             player.Hurt(0.005f);
             if (!fireEffect.isPlaying) {
+                audioSource.Play();
                 fireEffect.Play();
             }
         } else {
+            audioSource.Stop();
             fireEffect.Stop();
         }
     }

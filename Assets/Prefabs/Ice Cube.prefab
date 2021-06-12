@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 727929664725350341}
   - component: {fileID: 5488020946779500360}
   m_Layer: 2
-  m_Name: Cube (2)
+  m_Name: Ice Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f0ea3a1e1a3060541b394491478b9e8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

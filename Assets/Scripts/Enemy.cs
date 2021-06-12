@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
 	private void FixedUpdate () {
         if (Physics.CheckSphere(transform.position, 0.6f, LayerMask.GetMask("Player"))) {
-            playerController.Hurt(0.02f);
+            playerController.Hurt(0.01f);
             playerController.CancelRegen();
         }
 

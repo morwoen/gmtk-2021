@@ -16,6 +16,7 @@ public class MenuCamera : MonoBehaviour
   private Menu menu;
 
   private Transform focusedPlayer;
+  private Transform previousPlayer;
 
   private float waitOnCharacter = 0f;
   private float fadeToBlackTimer = 0f;
@@ -35,6 +36,10 @@ public class MenuCamera : MonoBehaviour
 
   void Update() {
     if (menu.isOpen) {
+      if (!previousPlayer) {
+        previousPlayer = cinemachine.Follow;
+        focusedPlayer = cinemachine.Follow;
+      }
       cinemachine.Follow = focusedPlayer;
       cinemachine.LookAt = focusedPlayer;
 
@@ -74,6 +79,12 @@ public class MenuCamera : MonoBehaviour
       fadeToBlackTimer = 0;
       fadeToWhiteTimer = 0;
       waitOnBlackTimer = 0;
+
+      if (previousPlayer) {
+        cinemachine.Follow = previousPlayer;
+        cinemachine.LookAt = previousPlayer;
+        previousPlayer = null;
+      }
     }
   }
 }

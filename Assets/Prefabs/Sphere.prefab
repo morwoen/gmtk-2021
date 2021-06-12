@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4056418422065708930}
   - component: {fileID: 4215900504220230384}
   - component: {fileID: 1737867626879645256}
-  - component: {fileID: 7607328833467414907}
   - component: {fileID: 7885360450527426458}
+  - component: {fileID: 7399964694125292175}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -97,22 +97,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7607328833467414907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5361941759754922155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2245da248f59a4c9fa6bfff5a12dac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 7885360450527426458}
-  speed: 5000
-  damage: 3
-  flame: {fileID: 3057096181403440337, guid: 23c8254fba07c3e43ab26c9d719ef36e, type: 3}
 --- !u!54 &7885360450527426458
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +113,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7399964694125292175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5361941759754922155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7023a7c59e23c4548af63c0b660e9158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 7885360450527426458}
+  speed: 5000
+  damage: 10
+  flame: {fileID: 6660775094547654572, guid: 93a81dc623fe2244baad27c2b74b3fc7, type: 3}

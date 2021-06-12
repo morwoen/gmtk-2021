@@ -7,7 +7,7 @@ public class FireEffectionCollision : MonoBehaviour
   public int damage = 3;
 
   private void OnParticleCollision(GameObject other) {
-    TargetHealth th = other.GetComponent<TargetHealth>();
+    targetHealth th = other.GetComponent<targetHealth>();
     if (th != null) {
       th.TakeDamage(damage);
     }

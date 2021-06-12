@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBulletBehavior : MonoBehaviour
+public class firebullet : MonoBehaviour
 {
   public Rigidbody rb;
   public float speed;
@@ -20,7 +20,7 @@ public class FireBulletBehavior : MonoBehaviour
   }
 
   void OnTriggerEnter(Collider hitinfo) {
-    TargetHealth th = hitinfo.GetComponent<TargetHealth>();
+    targetHealth th = hitinfo.GetComponent<targetHealth>();
     if (th != null) {
       Destroy(gameObject);
       th.TakeDamage(damage);

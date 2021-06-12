@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     //health
     float health;
+    public bool regen;
     
     //camera
     public Camera mainCamera;
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 0.5f;
+        health = 1;
         selected = Characters.Fire;
         fireCharacter = transform.GetChild(0).gameObject;
         iceCharacter = transform.GetChild(1).gameObject;
@@ -69,8 +70,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-            Hurt(.1f);
         doesRaycastHit = false; //DEBUG
         if (Input.GetButtonDown("Swap"))
         {
@@ -104,7 +103,7 @@ public class PlayerController : MonoBehaviour
         //jumping code
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
-            yTarget = 10;
+            yTarget = 5;
         }
 
         //Movement code
@@ -123,15 +122,38 @@ public class PlayerController : MonoBehaviour
         target.y = yTarget * gravity * Time.deltaTime;
 
         controller.Move(target);
-        if (currentCharacter.transform.position.y < -20) // Teleport to origin if fall
+        if (currentCharacter.transform.position.y < -30) // Teleport to origin if fall
         {
-            currentCharacter.transform.position = ORIGIN;
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         debugNote.GetComponent<Text>().text = "yTarget: " + yTarget+"\nisGrounded: " + controller.isGrounded + "\nCurrently Touching: " + standingObject.collider + "\nIs on top of something: " + doesRaycastHit;
     }
 
+	private void FixedUpdate () {
+		if(regen) {
+            Hurt(-0.01f);
+		}
+	}
+
+	public void CancelRegen() {
+        CancelInvoke();
+        regen = false;
+	}
+
+    public void QueueRegen(float time) {
+        if(!IsInvoking() && !regen) {
+            Invoke("Regen", time);
+		}
+	}
+
+    void Regen() {
+        regen = true;
+	}
+
     private void Swap()
     {
+        CancelRegen();
+
         currentCharacter.GetComponent<CharacterController>().enabled = false;
         currentCharacter.GetComponent<Rigidbody>().velocity = Vector3.zero;
         if (selected == Characters.Fire)
@@ -164,14 +186,17 @@ public class PlayerController : MonoBehaviour
 
     public void Hurt(float amount)
     {
-        if(health <= 0 || health >= 1)
+        health -= amount;
+
+        health = Mathf.Clamp(health, 0, 1);
+
+        if (health <= 0.01f)
         {
             CommitDie();
         }
-        else if (selected == Characters.Fire)
-            health -= amount;
-        else
-            health += amount;
+        //else if (selected == Characters.Fire)
+        //else
+        //    health += amount;
         UpdateHealth();
     }
 
@@ -181,6 +206,10 @@ public class PlayerController : MonoBehaviour
         tempGauge.value = health;
         Debug.Log(health + " " + selected);
     }
+
+    public float GetHealth() {
+        return health;
+	}
 
     public void CommitDie()
     {

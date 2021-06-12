@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -65,6 +66,8 @@ public class PlayerController : MonoBehaviour
         gravity = 1.7f;
         debugNote = UI.transform.Find("DebugText").gameObject;
         thermometer = UI.transform.Find("HealthSlider").gameObject;
+
+        SetupCinemachine();
     }
 
     // Update is called once per frame
@@ -168,20 +171,13 @@ public class PlayerController : MonoBehaviour
         }
         controller = currentCharacter.GetComponent<CharacterController>();
         currentCharacter.GetComponent<CharacterController>().enabled = true;
+        SetupCinemachine();
     }
 
-    //camera stuff
-    void LateUpdate()
-    {
-        Vector3 characterOffset = currentCharacter.transform.position + OFFSET;
-        lookDir = characterOffset - mainCamera.transform.position;
-        lookDir.y = 0;
-        lookDir.Normalize();
-
-        cameraTarget = characterOffset + currentCharacter.transform.up * 1.5f - lookDir * 6;
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, cameraTarget, Time.deltaTime * 7);
-
-        mainCamera.transform.rotation = Quaternion.Lerp(mainCamera.transform.rotation, Quaternion.LookRotation(currentCharacter.transform.position - mainCamera.transform.position), Time.deltaTime * 7);
+    void SetupCinemachine() {
+        var cinemachine = FindObjectOfType<CinemachineFreeLook>();
+        cinemachine.Follow = currentCharacter.transform;
+        cinemachine.LookAt = currentCharacter.transform;
     }
 
     public void Hurt(float amount)
@@ -214,6 +210,5 @@ public class PlayerController : MonoBehaviour
     public void CommitDie()
     {
         SceneManager.LoadScene(0);
-        
     }
 }

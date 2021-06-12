@@ -1754,7 +1754,7 @@ MonoBehaviour:
   - {fileID: 4207828217895913650}
   - {fileID: 4207828217897472538}
   logo: {fileID: 4207828218454387307}
-  speed: 1
+  speed: 0.5
 --- !u!1 &4207828218061296111
 GameObject:
   m_ObjectHideFlags: 0

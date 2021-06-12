@@ -15,7 +15,8 @@ public class FirePower : MonoBehaviour
 
     private void FixedUpdate () {
         if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Ice"))) {
-            player.Hurt(.5f * Time.fixedDeltaTime);
+            player.CancelRegen();
+            player.Hurt(0.005f);
         } else if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire"))) {
             player.QueueRegen(0.5f);
         } else {

@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject player;
-
+    public enum EnemyType { FIRE, ICE };
+    public EnemyType type;
+    
+    GameObject player;
     NavMeshAgent ai;
     PlayerController playerController;
 
@@ -15,6 +17,12 @@ public class Enemy : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         ai = GetComponent<NavMeshAgent>();
+
+        if(type == EnemyType.FIRE) {
+            player = playerController.fireCharacter;
+		} else {
+            player = playerController.iceCharacter;
+		}
     }
 
     // Update is called once per frame
@@ -25,8 +33,8 @@ public class Enemy : MonoBehaviour
 
 	private void FixedUpdate () {
         if (Physics.CheckSphere(transform.position, 0.6f, LayerMask.GetMask("Player"))) {
-            playerController.Hurt(0.01f);
             playerController.CancelRegen();
+            playerController.Hurt(0.01f);
         }
 
     }

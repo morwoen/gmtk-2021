@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Ice : MonoBehaviour
 {
+    public float iceAge = 15;
     public GameObject ice;
 
     private PlayerController player;
@@ -30,7 +31,7 @@ public class Ice : MonoBehaviour
         if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire"))) {
             player.CancelRegen();
             player.Hurt(0.005f);
-        } else if (isOnIce) {
+        } else if (isOnIce || Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"))) {
             player.QueueRegen(0.5f);
         } else {
             player.CancelRegen();
@@ -52,7 +53,7 @@ public class Ice : MonoBehaviour
                 Vector3 randomScale = new Vector3(Random.Range(0.1f, 1), Random.Range(0.1f, 1), Random.Range(0.1f, 1));
                 GameObject g = Instantiate(ice, transform.position + Vector3.down * ICE_RATE, randomRot); 
                 g.transform.localScale = randomScale;
-                Destroy(g, Random.Range(5, 7));
+                Destroy(g, Random.Range(iceAge - 2, iceAge));
             }
 
         } else {

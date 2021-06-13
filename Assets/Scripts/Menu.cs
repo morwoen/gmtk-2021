@@ -26,6 +26,8 @@ public class Menu : MonoBehaviour
   void Awake() {
     fadeToBlack = transform.GetChild(0).GetComponent<Image>();
     panel = transform.GetChild(1).gameObject;
+    // Hide the win panel
+    panel.transform.GetChild(3).gameObject.SetActive(false);
     isOpen = panel.activeSelf;
     var thisCanvas = GetComponent<Canvas>();
     foreach (var c in FindObjectsOfType<Canvas>()) {
@@ -54,6 +56,7 @@ public class Menu : MonoBehaviour
     HUD.SetActive(!isOpen);
     Time.timeScale = isOpen ? 0 : 1;
     fadeToBlack.color = new Color(0, 0, 0, isOpen ? fadeToBlack.color.a : 0);
+    Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
   }
 
   public void Play() {
@@ -73,5 +76,18 @@ public class Menu : MonoBehaviour
 
   public void LoadLevel(int level) {
     SceneManager.LoadScene(level);
+  }
+
+  public void WinTheGame() {
+    isOpen = true;
+    UpdateUI();
+    panel.transform.GetChild(1).gameObject.SetActive(false);
+    panel.transform.GetChild(2).gameObject.SetActive(false);
+    panel.transform.GetChild(3).gameObject.SetActive(true);
+  }
+
+  public void Restart() {
+    // Intended to be 0, restart the whole game
+    SceneManager.LoadScene(0);
   }
 }

@@ -25,7 +25,6 @@ public class Ice : MonoBehaviour
         bool isOnIce = Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Ice"));
         bool isOnFire = Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire"));
         bool isOnGround = Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"));
-    Debug.Log($"{ isOnIce} {isOnFire} {isOnGround}");
 
         if (isOnFire) {
             player.CancelRegen();

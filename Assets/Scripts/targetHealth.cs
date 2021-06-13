@@ -35,13 +35,16 @@ public class targetHealth : MonoBehaviour
                 AudioSource.PlayClipAtPoint(clip, transform.position);
             }
 
-            if (effect != null & !effect.isPlaying) {
-                begun = true;
-                //Instantiate(explosion, transform.position, Quaternion.identity);
-                effect.Play();
-                melt.SetTrigger("Melting");
+            if (effect != null) {
+                if (!effect.isPlaying) {
+                    begun = true;
+                    //Instantiate(explosion, transform.position, Quaternion.identity);
+                    effect.Play();
+                    melt.SetTrigger("Melting");
+                }
+            } else {
+                gameObject.SetActive(false);
             }
-            //Destroy(gameObject);
         }
     }
 }

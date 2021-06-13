@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(target);
         if (iceCharacter.transform.position.y < -30 || fireCharacter.transform.position.y < -30) // Teleport to origin if fall
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            CommitDie();
         }
         debugNote.GetComponent<Text>().text = "yTarget: " + yTarget+"\nisGrounded: " + controller.isGrounded + "\nCurrently Touching: " + standingObject.collider + "\nIs on top of something: " + doesRaycastHit;
     }

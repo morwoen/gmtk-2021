@@ -19,7 +19,7 @@ public class FirePower : MonoBehaviour
         if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Ice"))) {
             player.CancelRegen();
             player.Hurt(0.005f);
-        } else if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire"))) {
+        } else if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire")) || Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"))) {
             player.QueueRegen(0.5f);
         } else {
             player.CancelRegen();

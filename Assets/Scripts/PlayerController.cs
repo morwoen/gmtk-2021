@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
     private GameObject debugNote;
 
     //player characters
-    protected GameObject fireCharacter;
-    protected GameObject iceCharacter;
+    public GameObject fireCharacter;
+    public GameObject iceCharacter;
     public enum Characters {Fire,Ice};
     Characters selected;
     GameObject currentCharacter;

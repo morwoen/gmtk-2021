@@ -30,7 +30,7 @@ public class Ice : MonoBehaviour
         if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire"))) {
             player.CancelRegen();
             player.Hurt(0.005f);
-        } else if (isOnIce) {
+        } else if (isOnIce || Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"))) {
             player.QueueRegen(0.5f);
         } else {
             player.CancelRegen();

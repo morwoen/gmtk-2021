@@ -977,11 +977,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4164977076056627303, guid: 4d9c591e55871c144801c573bc723b3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.17
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4164977076056627303, guid: 4d9c591e55871c144801c573bc723b3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164977076056627303, guid: 4d9c591e55871c144801c573bc723b3e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1480,7 +1480,7 @@ GameObject:
   - component: {fileID: 2030184001}
   - component: {fileID: 2030184000}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: JumpDust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6550,7 +6550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18152478950451834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 35.88597, y: 35.885963, z: 35.885963}
   m_Children: []
   m_Father: {fileID: 1664999256}

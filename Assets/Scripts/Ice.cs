@@ -32,6 +32,7 @@ public class Ice : MonoBehaviour
             player.CancelRegen();
             player.Hurt(0.005f);
         } else if (isOnIce || Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"))) {
+            airIceDamage = false;
             player.QueueRegen(0.5f);
         } else {
             player.CancelRegen();
@@ -59,9 +60,6 @@ public class Ice : MonoBehaviour
         } else {
             audioSource.Stop();
 		}
-
-        if (isOnIce) airIceDamage = false;
-
 
         //if (regen) {
         //    bool air = !Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Ice"));

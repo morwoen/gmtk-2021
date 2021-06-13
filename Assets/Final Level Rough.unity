@@ -6166,8 +6166,8 @@ LightingSettings:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   serializedVersion: 3
-  m_GIWorkflowMode: 1
-  m_EnableBakedLightmaps: 1
+  m_GIWorkflowMode: 0
+  m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
   m_BounceScale: 1
@@ -6623,6 +6623,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4558715898489682979, guid: 7b899f21d7cdcf142b6874d757905a04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558715898489682979, guid: 7b899f21d7cdcf142b6874d757905a04, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153619619253747971, guid: 7b899f21d7cdcf142b6874d757905a04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153619619253747971, guid: 7b899f21d7cdcf142b6874d757905a04, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6162163845759525140, guid: 7b899f21d7cdcf142b6874d757905a04, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.7
@@ -7612,8 +7628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c60303efc766d40ab8bc9182542976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
-  clip: {fileID: 0}
+  explosion: {fileID: 6660775094547654568, guid: 93a81dc623fe2244baad27c2b74b3fc7, type: 3}
+  clip: {fileID: 8300000, guid: 45903850250361240b5acc34e8e4f573, type: 3}
   health: 0
 --- !u!64 &1075047243
 MeshCollider:
@@ -7947,13 +7963,17 @@ PrefabInstance:
       propertyPath: dangerColor.r
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5724087104417750930, guid: 36504f98ad7c6a34c98d5fa7fdec11ea, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 5724087104394971068, guid: 36504f98ad7c6a34c98d5fa7fdec11ea, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5724087104417750930, guid: 36504f98ad7c6a34c98d5fa7fdec11ea, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5724087104417750930, guid: 36504f98ad7c6a34c98d5fa7fdec11ea, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5724087104965102744, guid: 36504f98ad7c6a34c98d5fa7fdec11ea, type: 3}
       propertyPath: m_Pivot.x
@@ -8332,8 +8352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c60303efc766d40ab8bc9182542976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
-  clip: {fileID: 0}
+  explosion: {fileID: 6660775094547654568, guid: 93a81dc623fe2244baad27c2b74b3fc7, type: 3}
+  clip: {fileID: 8300000, guid: 45903850250361240b5acc34e8e4f573, type: 3}
   health: 0
 --- !u!64 &1240495515
 MeshCollider:
@@ -18202,8 +18222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c60303efc766d40ab8bc9182542976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
-  clip: {fileID: 0}
+  explosion: {fileID: 6660775094547654568, guid: 93a81dc623fe2244baad27c2b74b3fc7, type: 3}
+  clip: {fileID: 8300000, guid: 45903850250361240b5acc34e8e4f573, type: 3}
   health: 0
 --- !u!64 &2086258679
 MeshCollider:

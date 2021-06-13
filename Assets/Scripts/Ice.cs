@@ -11,9 +11,6 @@ public class Ice : MonoBehaviour
     private PlayerController player;
 
     AudioSource audioSource;
-    bool airIceDamage;
-
-    //bool regen;
 
     const float ICE_RATE = 1.56f; // The magic number
 
@@ -26,16 +23,17 @@ public class Ice : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate () {
         bool isOnIce = Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Ice"));
+        bool isOnFire = Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire"));
+        bool isOnGround = Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"));
+    Debug.Log($"{ isOnIce} {isOnFire} {isOnGround}");
 
-        if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire"))) {
+        if (isOnFire) {
             player.CancelRegen();
-            player.Hurt(0.005f);
-        } else if (isOnIce || Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"))) {
-            airIceDamage = false;
+            player.Hurt(0.3f * Time.fixedDeltaTime);
+        } else if (isOnIce || isOnGround) {
             player.QueueRegen(0.5f);
         } else {
             player.CancelRegen();
-            if (airIceDamage) player.Hurt(0.0032f);
         }
 
         if (!GetComponent<CharacterController>().enabled) {
@@ -45,9 +43,8 @@ public class Ice : MonoBehaviour
 
         if (Input.GetButton("Fire1")) {
             if (!isOnIce && player.GetHealth() > 0.01f) {
-                airIceDamage = true;
                 if (!audioSource.isPlaying) audioSource.Play();
-                //regen = false;
+                player.Hurt(0.2f * Time.fixedDeltaTime);
                 Quaternion randomRot = Quaternion.Euler(Random.Range(-8, 9), Random.Range(0, 359), Random.Range(-8, 8));
                 Vector3 randomScale = new Vector3(Random.Range(0.1f, 3), Random.Range(0.8F, 1), Random.Range(0.1f, 3));
                 GameObject g = Instantiate(ice, transform.position + Vector3.down * ICE_RATE, randomRot);

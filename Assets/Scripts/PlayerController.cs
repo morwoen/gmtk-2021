@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     //health
     float health;
     bool regen;
+    float canAir;
     
     //camera
     public Camera mainCamera;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
     Vector3 target;
     float yTarget;
     float gravity;
+    bool jump;
 
     //camera variables
     Vector3 cameraTarget;
@@ -67,13 +69,14 @@ public class PlayerController : MonoBehaviour
         gravity = 1.7f;
         debugNote = UI.transform.Find("DebugText").gameObject;
         thermometer = UI.transform.Find("HealthSlider").gameObject;
+        animate = fireCharacter.GetComponent<Animator>();
 
         SetupCinemachine();
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {       
         doesRaycastHit = false; //DEBUG
         if (Input.GetButtonDown("Swap"))
         {
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        animate.SetBool("Moving", direction.magnitude > 0.1f);
 
         // Sets control info for camera direction and player facing direction
         Vector3 cameraVector = mainCamera.transform.forward;
@@ -107,11 +112,20 @@ public class PlayerController : MonoBehaviour
         //jumping code
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
+            //jump = true;
+            //animate.SetTrigger("Jump");
             yTarget = 5;
         }
 
-        //Movement code
-        if (speed > 0.1f)
+		if (controller.isGrounded) {
+			canAir = Time.timeSinceLevelLoad;
+			animate.SetBool("Air", false);
+		} else if (Time.timeSinceLevelLoad - canAir > 0.1f) {
+			animate.SetBool("Air", true);
+		}
+
+		//Movement code
+		if (speed > 0.1f)
         {
             //target = speed*8*Time.deltaTime*stickPosition;
             target = speed * 8 * Time.deltaTime * currentCharacter.transform.forward;
@@ -171,6 +185,7 @@ public class PlayerController : MonoBehaviour
             currentCharacter = fireCharacter;
         }
         controller = currentCharacter.GetComponent<CharacterController>();
+        animate = currentCharacter.GetComponent<Animator>();
         currentCharacter.GetComponent<CharacterController>().enabled = true;
         SetupCinemachine();
     }

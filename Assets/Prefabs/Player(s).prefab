@@ -3786,6 +3786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bffa96ea3f2bc4743a42386966d21f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceAge: 15
   ice: {fileID: 4606588664694678311, guid: 1fb530be607c43a43a9fb6edc69152a6, type: 3}
 --- !u!1 &4780175942045576281
 GameObject:
@@ -4909,8 +4910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 0}
-  fireCharacter: {fileID: 0}
-  iceCharacter: {fileID: 0}
+  fireCharacter: {fileID: 2656114023491879653}
+  iceCharacter: {fileID: 4758169822425943189}
   mainCamera: {fileID: 0}
 --- !u!1 &6186894833863922878
 GameObject:

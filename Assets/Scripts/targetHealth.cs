@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class targetHealth : MonoBehaviour
 {
-    public GameObject explosion;
+
     public AudioClip clip;
     public int health;
+
+    ParticleSystem effect;
+    Animator melt;
+    bool begun;
+
+    private void Awake()
+    {
+        begun = false;
+        effect = transform.GetComponentInChildren<ParticleSystem>();
+        melt = transform.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (begun)
+        {
+            if(!effect.isPlaying)
+                gameObject.SetActive(false);
+        }
+    }
 
     public void TakeDamage (int damage) {
         health -= damage;
@@ -15,11 +35,13 @@ public class targetHealth : MonoBehaviour
                 AudioSource.PlayClipAtPoint(clip, transform.position);
             }
 
-            if (explosion != null) {
-                Instantiate(explosion, transform.position, Quaternion.identity);
+            if (effect != null & !effect.isPlaying) {
+                begun = true;
+                //Instantiate(explosion, transform.position, Quaternion.identity);
+                effect.Play();
+                melt.SetTrigger("Melting");
             }
-
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

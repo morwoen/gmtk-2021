@@ -4899,6 +4899,7 @@ MonoBehaviour:
   fireCharacter: {fileID: 2656114023491879653}
   iceCharacter: {fileID: 4758169822425943189}
   mainCamera: {fileID: 0}
+  coyoteTime: 0.1
 --- !u!1 &6186894833863922878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7322,16 +7323,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.05247879
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
       propertyPath: m_LocalRotation.w

@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
     Vector3 target;
     float yTarget;
     float gravity;
-    bool jump;
+    float timeSinceMidAir;
+    public float coyoteTime = 0.1f;
 
     //camera variables
     Vector3 cameraTarget;
@@ -76,13 +77,19 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
         doesRaycastHit = false; //DEBUG
         if (Input.GetButtonDown("Swap"))
         {
             Swap();
             yTarget = 0;
             return;
+        }
+
+        if (controller.isGrounded) {
+            timeSinceMidAir = 0;
+        } else {
+            timeSinceMidAir += Time.deltaTime;
         }
 
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -110,7 +117,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //jumping code
-        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        if (Input.GetButtonDown("Jump") && timeSinceMidAir < coyoteTime)
         {
             //jump = true;
             //animate.SetTrigger("Jump");

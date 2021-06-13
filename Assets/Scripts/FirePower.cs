@@ -18,7 +18,7 @@ public class FirePower : MonoBehaviour
     private void FixedUpdate () {
         if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Ice"))) {
             player.CancelRegen();
-            player.Hurt(0.005f);
+            player.Hurt(0.3f * Time.fixedDeltaTime);
         } else if (Physics.CheckSphere(transform.position + Vector3.down, 0.5f, LayerMask.GetMask("Fire")) || Physics.CheckSphere(transform.position + Vector3.down, 0.4f, LayerMask.GetMask("Default"))) {
             player.QueueRegen(0.5f);
         } else {
@@ -33,7 +33,7 @@ public class FirePower : MonoBehaviour
         
         if (Input.GetButton("Fire1")) {
             player.CancelRegen();
-            player.Hurt(0.005f);
+            player.Hurt(0.25f * Time.fixedDeltaTime);
             if (!fireEffect.isPlaying) {
                 audioSource.Play();
                 fireEffect.Play();

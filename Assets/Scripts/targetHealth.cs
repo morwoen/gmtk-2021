@@ -35,7 +35,7 @@ public class targetHealth : MonoBehaviour
                 AudioSource.PlayClipAtPoint(clip, transform.position);
             }
 
-            if (effect != null & !effect.isPlaying) {
+            if (effect != null && !effect.isPlaying) {
                 begun = true;
                 //Instantiate(explosion, transform.position, Quaternion.identity);
                 effect.Play();

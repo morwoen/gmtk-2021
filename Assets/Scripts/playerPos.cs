@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagment;  
+using UnityEngine.SceneManagement;  
 
 public class playerPos : MonoBehaviour
 {   //This script need to be attached to both players 
@@ -10,15 +10,15 @@ public class playerPos : MonoBehaviour
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<gameMaster>();
-        transform.position = gm.lastCheckPointPos; 
+        transform.position = gm.lastCheckpointPos; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (//the player dies) 
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
-        }
+        //if (//the player dies) 
+        //{
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+        //}
     }
 }

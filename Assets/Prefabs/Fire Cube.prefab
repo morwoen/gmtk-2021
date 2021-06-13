@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3f9538c7b6ad5c94aa19a0324d8d3e98, type: 2}
+  - {fileID: 2100000, guid: 530bb29a2958a304db374f011fa64625, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c60303efc766d40ab8bc9182542976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 0}
   clip: {fileID: 8300000, guid: 45903850250361240b5acc34e8e4f573, type: 3}
   health: 0
 --- !u!54 &3571617697188750515
@@ -157,5 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c60303efc766d40ab8bc9182542976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 0}
   clip: {fileID: 8300000, guid: 9d8c5ed11eb172c47a41f4593e61f750, type: 3}
   health: 10

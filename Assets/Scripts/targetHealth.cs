@@ -41,7 +41,7 @@ public class targetHealth : MonoBehaviour
                     //Instantiate(explosion, transform.position, Quaternion.identity);
                     effect.Play();
                     melt.SetTrigger("Melting");
-                }
+                } 
             } else {
                 gameObject.SetActive(false);
             }

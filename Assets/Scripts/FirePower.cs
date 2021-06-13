@@ -26,6 +26,7 @@ public class FirePower : MonoBehaviour
         }
 
         if (!GetComponent<CharacterController>().enabled) {
+            audioSource.Stop();
             fireEffect.Stop();
             return;
         } 

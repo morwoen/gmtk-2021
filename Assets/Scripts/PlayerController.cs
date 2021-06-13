@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
     Vector3 cameraTarget;
     Vector3 lookDir;
 
+    public bool DEBUG_ACTIVE;
+
+    const float bounceHeight = 30f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -111,9 +115,9 @@ public class PlayerController : MonoBehaviour
         if (controller.isGrounded)
         {
             yTarget = -0.5f; // sets the desired y position slightly below the ground to make sure the player stays grounded
-            doesRaycastHit = Physics.Raycast(currentCharacter.transform.position + Vector3.up, Vector3.down, out standingObject, 1000, ~LayerMask.GetMask("Player")); // maybe this should have an else for standingObject
+            doesRaycastHit = Physics.Raycast(currentCharacter.transform.position + Vector3.up, Vector3.down, out standingObject, 10f, ~LayerMask.GetMask("Player")); // maybe this should have an else for standingObject
             if (doesRaycastHit && standingObject.collider.material.bounciness > 0.1f)
-                yTarget = standingObject.collider.material.bounciness * 10f;
+                yTarget = standingObject.collider.material.bounciness * bounceHeight;
         }
 
         //jumping code
@@ -151,7 +155,8 @@ public class PlayerController : MonoBehaviour
         {
             CommitDie();
         }
-        debugNote.GetComponent<Text>().text = "yTarget: " + yTarget+"\nisGrounded: " + controller.isGrounded + "\nCurrently Touching: " + standingObject.collider + "\nIs on top of something: " + doesRaycastHit;
+        if(DEBUG_ACTIVE)
+            debugNote.GetComponent<Text>().text = "yTarget: " + yTarget+"\nisGrounded: " + controller.isGrounded + "\nCurrently Touching: " + standingObject.collider + "\nIs on top of something: " + doesRaycastHit;
     }
 
 	private void FixedUpdate () {

@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9205687755625698632}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7280463664818135679}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2062,7 +2062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2100317819048850110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4500,7 +4500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6409836744494161677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4899,7 +4899,6 @@ MonoBehaviour:
   fireCharacter: {fileID: 2656114023491879653}
   iceCharacter: {fileID: 4758169822425943189}
   mainCamera: {fileID: 0}
-  coyoteTime: 0.1
 --- !u!1 &6186894833863922878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7323,8 +7322,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.05247879
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 2668569762343252233, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7364,7 +7371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2668569762343252236, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 283f6ef731e92764783006538cdfeb3a, type: 3}

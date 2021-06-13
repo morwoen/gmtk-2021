@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +12,6 @@ public class ColorByValue : MonoBehaviour
 
     public Image handle;
     public Image fill;
-    public TextMeshProUGUI warning;
 
     private float lastHealthValue;
     private Color currentColor;
@@ -25,16 +23,13 @@ public class ColorByValue : MonoBehaviour
 
     private void Update()
     {
-        if(lastHealthValue <= 0.2f)
+        
+        if(lastHealthValue <= 0.2f || lastHealthValue > 0.8f)
         {
             float timeWave = (Mathf.Sin(10*Time.time)+1)/2;
             Color blendColor = Color.Lerp(currentColor, dangerColor, Mathf.Round(timeWave));
             handle.color = blendColor;
             fill.color = blendColor;
-            warning.color = blendColor;
-            warning.gameObject.SetActive(true);
-        } else {
-            warning.gameObject.SetActive(false);
         }
     }
 

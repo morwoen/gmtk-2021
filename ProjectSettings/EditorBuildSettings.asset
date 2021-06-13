@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Final Level Rough.unity
-    guid: c6253e334785f624aba594336f4332a6
+    path: Assets/Scenes/Level Design.unity
+    guid: 348b7e4ad4b29cc49bada9255a649152
   m_configObjects: {}

@@ -50,8 +50,7 @@ public class PlayerController : MonoBehaviour
     Vector3 target;
     float yTarget;
     float gravity;
-    float timeSinceMidAir;
-    public float coyoteTime = 0.1f;
+    bool jump;
 
     //camera variables
     Vector3 cameraTarget;
@@ -77,19 +76,13 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {       
         doesRaycastHit = false; //DEBUG
         if (Input.GetButtonDown("Swap"))
         {
             Swap();
             yTarget = 0;
             return;
-        }
-
-        if (controller.isGrounded) {
-            timeSinceMidAir = 0;
-        } else {
-            timeSinceMidAir += Time.deltaTime;
         }
 
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -117,7 +110,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //jumping code
-        if (Input.GetButtonDown("Jump") && timeSinceMidAir < coyoteTime)
+        if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             //jump = true;
             //animate.SetTrigger("Jump");
@@ -178,8 +171,6 @@ public class PlayerController : MonoBehaviour
     private void Swap()
     {
         //CancelRegen();
-        // stop moving if the switch was while moving
-        animate.SetBool("Moving", false);
 
         currentCharacter.GetComponent<CharacterController>().enabled = false;
         //currentCharacter.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -225,7 +216,7 @@ public class PlayerController : MonoBehaviour
     {
         Slider tempGauge = thermometer.GetComponent<Slider>();
         tempGauge.value = health;
-        //Debug.Log(health + " " + selected);
+        Debug.Log(health + " " + selected);
     }
 
     public float GetHealth() {

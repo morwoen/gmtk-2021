@@ -11,8 +11,14 @@ public class targetHealth : MonoBehaviour
     public void TakeDamage (int damage) {
         health -= damage;
         if (health <= 0) {
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-            Instantiate(explosion, transform.position, Quaternion.identity);
+            if (clip != null) {
+                AudioSource.PlayClipAtPoint(clip, transform.position);
+            }
+
+            if (explosion != null) {
+                Instantiate(explosion, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
     }

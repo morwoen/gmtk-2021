@@ -4896,8 +4896,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 0}
-  fireCharacter: {fileID: 0}
-  iceCharacter: {fileID: 0}
+  fireCharacter: {fileID: 2656114023491879653}
+  iceCharacter: {fileID: 4758169822425943189}
   mainCamera: {fileID: 0}
 --- !u!1 &6186894833863922878
 GameObject:

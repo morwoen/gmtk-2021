@@ -23,8 +23,7 @@ public class ColorByValue : MonoBehaviour
 
     private void Update()
     {
-        
-        if(lastHealthValue <= 0.2f || lastHealthValue > 0.8f)
+        if(lastHealthValue <= 0.2f)
         {
             float timeWave = (Mathf.Sin(10*Time.time)+1)/2;
             Color blendColor = Color.Lerp(currentColor, dangerColor, Mathf.Round(timeWave));

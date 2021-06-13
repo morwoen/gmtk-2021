@@ -39,6 +39,7 @@ public class Ice : MonoBehaviour
         }
 
         if (!GetComponent<CharacterController>().enabled) {
+            audioSource.Stop();
             return;
         }
 
@@ -53,7 +54,6 @@ public class Ice : MonoBehaviour
                 g.transform.localScale = randomScale;
                 Destroy(g, Random.Range(iceAge - 2, iceAge));
             }
-
         } else {
             audioSource.Stop();
         }

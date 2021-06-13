@@ -171,6 +171,8 @@ public class PlayerController : MonoBehaviour
     private void Swap()
     {
         //CancelRegen();
+        // stop moving if the switch was while moving
+        animate.SetBool("Moving", false);
 
         currentCharacter.GetComponent<CharacterController>().enabled = false;
         //currentCharacter.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -216,7 +218,7 @@ public class PlayerController : MonoBehaviour
     {
         Slider tempGauge = thermometer.GetComponent<Slider>();
         tempGauge.value = health;
-        Debug.Log(health + " " + selected);
+        //Debug.Log(health + " " + selected);
     }
 
     public float GetHealth() {

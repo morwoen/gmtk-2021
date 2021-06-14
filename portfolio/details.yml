@@ -1,10 +1,22 @@
 name: Icey Hot
-summary: Help Icey and Igni climb the tower while balacing their temperature
+summary: Help Icey and Igni ascend the tower while balancing their temperature
 description: |
-  Join Icey and Igni in their amasing adventures and help them ascent the spiral tower while balancing their temperature and ensuring their survival together
+  You play as Icey and Igni, who need to reach the top of the tower by utilising their abilities of fire & ice to overcome obstacles in their way and help each other reach the top!
+
+  This game is developed in 48 hours as part of the GMTK 2021 Game Jam.
+
+  ## Controls
+
+  |   |   |
+  | -: | :- |
+  | WASD | Move |
+  | Space | Jump |
+  | Click/Control | Fire Flames or create Ice Bridges |
+  | E | Swap Characters |
+
 contributors:
 - "Groovy"
 - Georgi Tsaklev "Morwoen"
 - Jesse "BennettApps"
-- Nathan "Starius"
+- Nathan "Starius" Schleh
 - "Roselade"
